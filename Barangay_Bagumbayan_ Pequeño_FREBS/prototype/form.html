@@ -1,1 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Reservation - Barangay System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+  <nav>
+    <h1>Barangay Reservation</h1>
+    <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">☰</button>
+    <ul class="nav-links">
+      <li><a href="list.html">Reservations</a></li>
+      <li><a href="form.html">New Reservation</a></li>
+      <li><a href="#">Facilities</a></li>
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <h2>New Reservation</h2>
+    </div>
+
+    <div class="form-container">
+      <form action="list.html" method="POST">
+        
+        <!-- Resident -->
+        <div class="form-group">
+          <label for="resident_id">Resident</label>
+          <select id="resident_id" name="resident_id" required>
+            <option value="">-- Select Resident --</option>
+            <option value="1">Maria Santos (Purok 1)</option>
+            <option value="2">Jose Ramirez (Purok 2)</option>
+            <option value="3">Ana Dela Cruz (Purok 3)</option>
+            <option value="4">Roberto Nacario (Purok 3)</option>
+            <option value="5">Liza Buenaflor (Purok 4)</option>
+          </select>
+        </div>
+
+        <!-- Facility -->
+        <div class="form-group">
+          <label for="facility_id">Facility</label>
+          <select id="facility_id" name="facility_id" required>
+            <option value="">-- Select Facility --</option>
+            <option value="1">Barangay Hall Session Room</option>
+            <option value="2">Bagumbayan Covered Court</option>
+            <option value="3">Multipurpose Hall</option>
+            <option value="4">Day Care Center</option>
+          </select>
+        </div>
+
+        <!-- Purpose (WITH ERROR STATE) -->
+        <div class="form-group has-error">
+          <label for="purpose">Purpose</label>
+          <input type="text" id="purpose" name="purpose" maxlength="200" value="" placeholder="e.g. Wedding Reception">
+          <span class="error-message">Please fill in all required fields.</span>
+        </div>
+
+        <!-- Start Time -->
+        <div class="form-group">
+          <label for="start_ts">Start Date & Time</label>
+          <input type="datetime-local" id="start_ts" name="start_ts" required>
+        </div>
+
+        <!-- End Time -->
+        <div class="form-group">
+          <label for="end_ts">End Date & Time</label>
+          <input type="datetime-local" id="end_ts" name="end_ts" required>
+        </div>
+
+        <!-- Actions -->
+        <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+          <button type="submit" class="btn btn-primary">Save Reservation</button>
+          <a href="list.html" class="btn btn-secondary">Cancel</a>
+        </div>
+
+      </form>
+    </div>
+  </main>
+
+</body>
+</html>
