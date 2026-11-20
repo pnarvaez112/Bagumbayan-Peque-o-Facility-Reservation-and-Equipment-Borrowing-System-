@@ -1,1 +1,48 @@
+# Project Brief: Barangay Facility and Equipment Reservation System
 
+## 1. The problem
+Residents of the barangay who want to use the hall, the covered court, or
+borrow chairs and tents have to go to the barangay office and ask in person.
+Officials write bookings on paper, so it is hard to see which schedules
+overlap or which equipment has not been returned.
+
+## 2. Users and what they need to do
+| User role | What they need to do in the app |
+|-----------|---------------------------------|
+| Resident | Reserve a facility, see their reservations, request to borrow equipment |
+| Barangay official (admin) | Approve or reject reservations, record borrowed and returned equipment, manage facilities and equipment |
+
+## 3. The database behind it
+Database name: barangay (schema `brgy`). 10 tables.
+- purok: the areas (puroks) of the barangay.
+- official: barangay officials who approve requests.
+- facility: places that can be reserved, with capacity and hourly fee.
+- equipment_category: groups of equipment, like Furniture.
+- resident: people who reserve and borrow.
+- reservation: a resident's booking of a facility for a time slot.
+- equipment: types of equipment, like Projector.
+- equipment_item: each physical unit with its asset tag.
+- borrowing: one borrowing transaction by a resident.
+- borrow_item: the units in a borrowing and how they were returned.
+
+## 4. Must-have features
+- Add a reservation for a facility (reservation, facility, resident).
+- Search the list of reservations by status or date (reservation).
+- Approve or reject a reservation (reservation, official).
+- Record a borrowing of equipment (borrowing, borrow_item, equipment_item).
+- Record the return of equipment and its condition (borrow_item).
+- Manage residents (resident, purok).
+
+## 5. Nice-to-have features
+- Show a calendar of facility schedules.
+- Show a list of overdue equipment.
+
+## 6. Similar apps I looked at
+- **Skedda** (skedda.com): room and resource booking with a calendar.
+  I will borrow the request-then-approve flow: a reservation starts as
+  Pending, then an official approves or rejects it.
+- **Snipe-IT** (snipe-it.com): asset tracking. I will borrow tracking each
+  unit by its asset tag, with a due date and a return record.
+
+How mine is different: it is made for a barangay, and a borrowing can be
+linked to the reservation it supports.
