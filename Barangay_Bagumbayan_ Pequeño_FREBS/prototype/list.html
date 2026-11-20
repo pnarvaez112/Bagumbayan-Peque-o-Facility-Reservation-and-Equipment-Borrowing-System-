@@ -1,1 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservations List - Barangay System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+  <nav>
+    <h1>Barangay Reservation</h1>
+    <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">☰</button>
+    <ul class="nav-links">
+      <li><a href="list.html">Reservations</a></li>
+      <li><a href="form.html">New Reservation</a></li>
+      <li><a href="#">Facilities</a></li>
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <h2>Reservations</h2>
+      <a href="form.html" class="btn btn-primary">+ Add Reservation</a>
+    </div>
+
+    <!-- Filter Bar -->
+    <form class="filter-bar" action="#" method="GET">
+      <input type="text" name="search" placeholder="Search by resident or purpose...">
+      <select name="status">
+        <option value="">All Statuses</option>
+        <option value="Pending">Pending</option>
+        <option value="Approved">Approved</option>
+        <option value="Rejected">Rejected</option>
+        <option value="Cancelled">Cancelled</option>
+        <option value="Completed">Completed</option>
+      </select>
+      <input type="date" name="date">
+      <button type="submit" class="btn btn-secondary">Filter</button>
+    </form>
+
+    <!-- Data Table -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Resident</th>
+            <th>Facility</th>
+            <th>Purpose</th>
+            <th>Date & Time</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Row 1: Pending -->
+          <tr>
+            <td data-label="Resident">Liza Buenaflor</td>
+            <td data-label="Facility">Barangay Hall Session Room</td>
+            <td data-label="Purpose">Livelihood Seminar</td>
+            <td data-label="Date">Nov 09, 2026 (08:00 - 12:00)</td>
+            <td data-label="Status"><span class="badge badge-pending">Pending</span></td>
+            <td data-label="Actions">
+              <a href="#" class="btn btn-secondary btn-sm">Edit</a>
+              <a href="#" class="btn btn-danger btn-sm">Cancel</a>
+            </td>
+          </tr>
+          
+          <!-- Row 2: Approved -->
+          <tr>
+            <td data-label="Resident">Roberto Nacario</td>
+            <td data-label="Facility">Bagumbayan Covered Court</td>
+            <td data-label="Purpose">Wedding Reception</td>
+            <td data-label="Date">Nov 07, 2026 (09:00 - 15:00)</td>
+            <td data-label="Status"><span class="badge badge-approved">Approved</span></td>
+            <td data-label="Actions">
+              <a href="#" class="btn btn-secondary btn-sm">View</a>
+            </td>
+          </tr>
+
+          <!-- Row 3: Completed -->
+          <tr>
+            <td data-label="Resident">Maria Santos</td>
+            <td data-label="Facility">Bagumbayan Covered Court</td>
+            <td data-label="Purpose">Barangay Basketball League Opening</td>
+            <td data-label="Date">Oct 10, 2026 (14:00 - 20:00)</td>
+            <td data-label="Status"><span class="badge badge-completed">Completed</span></td>
+            <td data-label="Actions">
+              <a href="#" class="btn btn-secondary btn-sm">View</a>
+            </td>
+          </tr>
+
+          <!-- Row 4: Cancelled -->
+          <tr>
+            <td data-label="Resident">Mark Belleza</td>
+            <td data-label="Facility">Bagumbayan Covered Court</td>
+            <td data-label="Purpose">Zumba Session (cancelled by requester)</td>
+            <td data-label="Date">Nov 07, 2026 (10:00 - 12:00)</td>
+            <td data-label="Status"><span class="badge badge-cancelled">Cancelled</span></td>
+            <td data-label="Actions">
+              <a href="#" class="btn btn-secondary btn-sm">View</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+</body>
+</html>
