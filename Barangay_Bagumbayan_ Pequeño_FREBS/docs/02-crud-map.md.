@@ -1,1 +1,45 @@
+# CRUD Map
 
+## 1. CRUD map for all tables
+
+| Table | C | R | U | D | Pages | Who |
+|-------|---|---|---|---|-------|-----|
+| purok | ✓ | ✓ | ✓ | – | puroks (list + form in one page) | Admin only. Not deleted: residents depend on it. |
+| official | ✓ | ✓ | ✓ | – | officials (list + form) | Admin only. Not deleted: approvals refer to it, so it is kept as a record. |
+| facility | ✓ | ✓ | ✓ | – | facilities-list, facility-form | Resident: R. Admin: C, R, U. Not deleted: reservations depend on it. |
+| equipment_category | ✓ | ✓ | ✓ | – | categories (list + form) | Admin only. Not deleted: equipment depends on it. |
+| resident | ✓ | ✓ | ✓ | – | register, residents-list, resident-form | Resident: C, R, U own. Admin: all except delete. Not deleted: reservations and borrowings depend on it. |
+| reservation | ✓ | ✓ | ✓ | – | reservations-list, reservation-view, reservation-form | Resident: C, R own, cancel own (status update). Admin: R all, U status (approve or reject). Never deleted, kept as a record. |
+| equipment | ✓ | ✓ | ✓ | – | equipment-list, equipment-form | Resident: R. Admin: C, R, U. Not deleted: borrowing history depends on it. |
+| equipment_item | ✓ | ✓ | ✓ | – | items-list, item-form | Admin only. Item status is changed to Retired instead of deleting. |
+| borrowing | ✓ | ✓ | ✓ | – | borrowings-list, borrowing-view, borrowing-form | Admin: C, R, U (for example the due date). Resident: R own. Never deleted, kept as a record. |
+| borrow_item | ✓ | ✓ | ✓ | – | borrowing-view, return-form | Admin: C (add items to a borrowing), R, U (record the return and its condition). Never deleted, kept as history. |
+
+## 2. Form fields for my two most important tables
+
+### reservation (page: reservation-form)
+
+| Column | Form control | Required? |
+|--------|--------------|-----------|
+| reservation_id (UUID) | none, made by the database | no |
+| resident_id (foreign key) | `<select>` of resident names, stores the id. For a logged-in resident it is filled in automatically. | yes * |
+| facility_id (foreign key) | `<select>` of facility names, stores the id | yes * |
+| official_id (foreign key) | not on the Add form. The admin sets it when approving. | no |
+| purpose VARCHAR(200) | `<input type="text" maxlength="200">` | yes * |
+| start_ts (timestamp) | `<input type="datetime-local">` | yes * |
+| end_ts (timestamp) | `<input type="datetime-local">` | yes * |
+| status (default 'Pending') | not on the Add form. On the admin Edit page it is a `<select>`: Pending, Approved, Rejected, Cancelled, Completed. | no |
+
+### resident (page: resident-form)
+
+| Column | Form control | Required? |
+|--------|--------------|-----------|
+| resident_id (UUID) | none, made by the database | no |
+| first_name VARCHAR(60) | `<input type="text" maxlength="60">` | yes * |
+| last_name VARCHAR(60) | `<input type="text" maxlength="60">` | yes * |
+| contact_no VARCHAR(11) | `<input type="tel" maxlength="11" pattern="09[0-9]{9}">` | yes * |
+| purok_id (foreign key) | `<select>` of purok names, stores the id | yes * |
+
+## 3. Schema changes
+
+None so far. (Note: the database has no password or login columns. I will decide in Week 15 how users log in, and I will write any change here.)
